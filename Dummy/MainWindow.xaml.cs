@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Client_Server_Practice_In_One_Class
+namespace Dummy
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -23,11 +23,6 @@ namespace Client_Server_Practice_In_One_Class
         public MainWindow()
         {
             InitializeComponent();
-        }
-
-        private void EventTrigger_GotFocus(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

@@ -5,8 +5,75 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Client_Server_Practice_In_One_Class"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="350" Width="525"
+        DataContext="{Binding Source={StaticResource Locator}, Path=Main}">
+    <Window.Resources>
+        <Style TargetType="TextBox">
+            <Style.Triggers>
+                <Trigger Property="IsFocused" Value="True">
+                    <Setter Property="Background" Value="Red"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1.8*"/>
+            <ColumnDefinition Width="1.5*"/>
+            <ColumnDefinition Width="1.8*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel VerticalAlignment="Center" Margin="10">
+            <Button Content="Server" Command="{Binding ServerBtn}"/>
+        </StackPanel>
+
+        <StackPanel Grid.Column="2" VerticalAlignment="Top" Orientation="Horizontal">
+            <ListBox ItemsSource="{Binding ImageList}" SelectedItem="{Binding SelectedImage}" Width="184">
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel></WrapPanel>
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Margin="2">
+                            <Image Width="50" Height="50" Source="{Binding}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+                
+            </ListBox>
+        </StackPanel>
+
+        <StackPanel VerticalAlignment="Center" Margin="10" Grid.Column="2">
+            <Button Content="Client" Command="{Binding ClientBtn}"/>
+            <StackPanel Orientation="Horizontal" Margin="0,5,0,5">
+                <Button Content="Send" Command="{Binding SendBtn}"/>
+                <TextBox Width="120" Margin="5,0,0,0" Text="{Binding Message}"/>
+            </StackPanel>
+        </StackPanel>
+
+        <ListBox Grid.Column="1" ItemsSource="{Binding MessageList}">
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Vertical"></StackPanel>
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+            <ListBox.ItemTemplate>
+            <DataTemplate>
+                <StackPanel Orientation="Horizontal">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Image Source="{Binding Avatar}" Width="50" Height="50"/>
+                        <Label Content="{Binding Message}" Grid.Column="1"/>
+                    </Grid>
+                </StackPanel>
+            </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </Grid>
 </Window>
